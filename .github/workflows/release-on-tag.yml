@@ -39,11 +39,21 @@ jobs:
           GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
           chmod +x currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }} || true
 
+          if [[ "${{ matrix.os }}" == "linux" || "${{ matrix.os }}" == "darwin" ]]; then
+            tar -czf currency-converter-${{ matrix.os }}-${{ matrix.arch }}.tar.gz currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+            rm currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+          elif [[ "${{ matrix.os }}" == "windows" ]]; then
+            powershell Compress-Archive -Path currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }} -DestinationPath currency-converter-${{ matrix.os }}-${{ matrix.arch }}.zip
+            rm currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+          fi
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: currency-converter-${{ matrix.os }}-${{ matrix.arch }}
-          path: currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+          path: |
+            currency-converter-${{ matrix.os }}-${{ matrix.arch }}.tar.gz
+            currency-converter-${{ matrix.os }}-${{ matrix.arch }}.zip
 
   release:
     needs: build
