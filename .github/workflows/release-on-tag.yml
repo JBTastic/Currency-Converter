@@ -36,13 +36,14 @@ jobs:
 
       - name: Build binary
         run: |
-          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o myapp-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+          chmod +x currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }} || true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: myapp-${{ matrix.os }}-${{ matrix.arch }}
-          path: myapp-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+          name: currency-converter-${{ matrix.os }}-${{ matrix.arch }}
+          path: currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
 
   release:
     needs: build
