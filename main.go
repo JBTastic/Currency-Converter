@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 )
 
 type ApiResponse struct {
@@ -107,5 +108,14 @@ func main() {
 		return
 	}
 
-	fmt.Printf("💱 %.2f %s → %.2f %s (Date: %s)\n", *amount, *from, rate, *to, result.Date)
+	// Format the date
+	input := result.Date
+	t, err := time.Parse("2006-01-02", input)
+	if err != nil {
+		fmt.Println("❌ Error parsing date:", err)
+		return
+	}
+
+	output := t.Format("02.01.2006")
+	fmt.Printf("💱 %.2f %s → %.2f %s (Date: %s)\n", *amount, *from, rate, *to, output)
 }
