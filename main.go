@@ -86,7 +86,9 @@ func main() {
 		return
 	}
 
-	url := fmt.Sprintf("https://api.frankfurter.app/latest?amount=%f&from=%s&to=%s", *amount, *from, *to)
+	fromUpper := strings.ToUpper(*from)
+	toUpper := strings.ToUpper(*to)
+	url := fmt.Sprintf("https://api.frankfurter.app/latest?amount=%f&from=%s&to=%s", *amount, fromUpper, toUpper)
 
 	resp, err := http.Get(url)
 	if err != nil {
@@ -102,7 +104,7 @@ func main() {
 		return
 	}
 
-	rate, ok := result.Rates[*to]
+	rate, ok := result.Rates[toUpper]
 	if !ok {
 		fmt.Printf("❌ Invalid source or target currency: %s | %s\n", *from, *to)
 		return
