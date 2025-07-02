@@ -6,7 +6,7 @@ A simple CLI tool to convert currencies using the Frankfurter API.
 
 ## Download & Installation
 
-You can download prebuilt binaries from the [Releases](https://github.com/yourusername/yourrepo/releases) page.
+You can download prebuilt binaries from the [Releases](https://github.com/JBTastic/Currency-Converter/releases/) page.
 
 ### Supported Platforms
 
