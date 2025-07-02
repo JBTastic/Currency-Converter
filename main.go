@@ -106,7 +106,7 @@ func main() {
 
 	rate, ok := result.Rates[toUpper]
 	if !ok {
-		fmt.Printf("❌ Invalid source or target currency: %s | %s\n", *from, *to)
+		fmt.Printf("❌ Invalid source or target currency: %s | %s\n", fromUpper, toUpper)
 		return
 	}
 
@@ -119,5 +119,5 @@ func main() {
 	}
 
 	output := t.Format("02.01.2006")
-	fmt.Printf("💱 %.2f %s → %.2f %s (Date: %s)\n", *amount, *from, rate, *to, output)
+	fmt.Printf("💱 %.2f %s → %.2f %s (Date: %s)\n", *amount, fromUpper, rate, toUpper, output)
 }
