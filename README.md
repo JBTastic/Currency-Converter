@@ -27,26 +27,26 @@ You can download prebuilt binaries from the [Releases](https://github.com/yourus
 
 ### Linux / macOS
 
-1. Download the appropriate `.tar.gz` archive. 
+1. Download the appropriate `.tar.gz` archive.  
 2. Extract the archive using your preferred method, or via command line:
 
-    ```bash
+```bash
     tar -xzf currency-converter-linux-amd64.tar.gz
-    ```
+```
 
 3. Change to the extracted directory if necessary and run the binary:
 
-    ```bash
-    ./currency-converter-linux-amd64 -h
-    ```
+```bash
+    ./currency-converter -h
+```
 
 > **Note:**  
 > The executable permission bit is preserved when unpacking with `tar` on Linux/macOS.  
 > If you get a permission denied error, run:
 
-    ```bash
+```bash
     chmod +x currency-converter
-    ```
+```
 
 ### Windows
 
@@ -54,9 +54,9 @@ You can download prebuilt binaries from the [Releases](https://github.com/yourus
 2. Extract it using Windows Explorer or any unzip tool.  
 3. Run the executable, e.g.:
 
-    ```bash
-    currency-converter-windows-amd64.exe -h
-    ```
+```powershell
+    currency-converter.exe -h
+```
 
 ---
 
@@ -65,6 +65,7 @@ You can download prebuilt binaries from the [Releases](https://github.com/yourus
 To compile the Currency Converter CLI from source, you need to have Go installed (version 1.22 or higher recommended).
 
 1. Clone the repository:
+
 ```bash
     git clone https://github.com/JBTastic/Currency-Converter.git
     cd Currency-Converter
@@ -72,7 +73,7 @@ To compile the Currency Converter CLI from source, you need to have Go installed
 
 2. Build the binary for your platform:
 
-    ```bash
+```bash
     # For your current platform:
     go build -o currency-converter
 
@@ -87,13 +88,13 @@ To compile the Currency Converter CLI from source, you need to have Go installed
 
     # For macOS arm64:
     GOOS=darwin GOARCH=arm64 go build -o currency-converter-darwin-arm64
-    ```
+```
 
 3. Run the built binary:
 
-    ```bash
+```bash
     ./currency-converter -h
-    ```
+```
 
 > **Note:** When cross-compiling, make sure your Go environment supports it and that you use the correct `GOOS` and `GOARCH` values.
 
@@ -101,14 +102,15 @@ To compile the Currency Converter CLI from source, you need to have Go installed
 
 ## Usage Examples
 
-    ```bash
-    ./currency-converter-linux-amd64 -amount 100 -from EUR -to USD
+```bash
+./currency-converter -amount 100 -from EUR -to USD
+
 ```
 
 or on Windows:
 
-```bash
-    currency-converter-windows-amd64.exe -amount 100 -from EUR -to USD
+```powershell
+    currency-converter.exe -amount 100 -from EUR -to USD
 ```
 
 ---
@@ -118,9 +120,9 @@ or on Windows:
 - `-amount` float64: Amount to convert (required)  
 - `-from` string: Source currency code (e.g. EUR) (required)  
 - `-to` string: Target currency code (e.g. USD) (required)  
-    ```bash
-    currency-converter-windows-amd64.exe -amount 100 -from EUR -to USD
-    ```
+```powershell
+    currency-converter.exe -amount 100 -from EUR -to USD
+```
 
 ---
 
