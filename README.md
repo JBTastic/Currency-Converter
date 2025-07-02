@@ -34,7 +34,7 @@ You can download prebuilt binaries from the [Releases](https://github.com/yourus
 
 3. Change to the extracted directory if necessary and run the binary:
 
-    ./currency-converter-linux-amd64
+    ./currency-converter-linux-amd64 -h
 
 > **Note:**  
 > The executable permission bit is preserved when unpacking with `tar` on Linux/macOS.  
@@ -48,7 +48,7 @@ You can download prebuilt binaries from the [Releases](https://github.com/yourus
 2. Extract it using Windows Explorer or any unzip tool.  
 3. Run the executable, e.g.:
 
-    currency-converter-windows-amd64.exe
+    currency-converter-windows-amd64.exe -h
 
 ---
 
