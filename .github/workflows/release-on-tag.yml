@@ -40,15 +40,22 @@ jobs:
 
       - name: Build binary and create archive
         run: |
-          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
-          chmod +x currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }} || true
+          # Build binary with a fixed name "currency-converter" (add .exe on Windows)
+          BIN_NAME="currency-converter"
+          [[ "${{ matrix.os }}" == "windows" ]] && BIN_NAME="${BIN_NAME}.exe"
+
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o "$BIN_NAME"
+          chmod +x "$BIN_NAME" || true
+
+          # Archive name includes OS and architecture as before
+          ARCHIVE_NAME="currency-converter-${{ matrix.os }}-${{ matrix.arch }}"
 
           if [[ "${{ matrix.os }}" == "linux" || "${{ matrix.os }}" == "darwin" ]]; then
-            tar -czf currency-converter-${{ matrix.os }}-${{ matrix.arch }}.tar.gz currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
-            rm currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+            # Create a tar.gz archive containing the binary
+            tar -czf "${ARCHIVE_NAME}.tar.gz" "$BIN_NAME"
           elif [[ "${{ matrix.os }}" == "windows" ]]; then
-            zip currency-converter-${{ matrix.os }}-${{ matrix.arch }}.zip currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
-            rm currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
+            # Create a zip archive containing the binary
+            zip "${ARCHIVE_NAME}.zip" "$BIN_NAME"
           fi
 
       - name: Upload artifact
