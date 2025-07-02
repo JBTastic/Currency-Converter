@@ -34,7 +34,11 @@ jobs:
         with:
           go-version: "1.22"
 
-      - name: Build binary
+      - name: Install zip (for Windows packaging)
+        if: matrix.os == 'windows'
+        run: sudo apt-get update && sudo apt-get install -y zip
+
+      - name: Build binary and create archive
         run: |
           GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
           chmod +x currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }} || true
@@ -43,7 +47,7 @@ jobs:
             tar -czf currency-converter-${{ matrix.os }}-${{ matrix.arch }}.tar.gz currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
             rm currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
           elif [[ "${{ matrix.os }}" == "windows" ]]; then
-            powershell Compress-Archive -Path currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }} -DestinationPath currency-converter-${{ matrix.os }}-${{ matrix.arch }}.zip
+            zip currency-converter-${{ matrix.os }}-${{ matrix.arch }}.zip currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
             rm currency-converter-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.ext }}
           fi
 
