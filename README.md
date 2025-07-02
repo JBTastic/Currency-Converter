@@ -27,20 +27,26 @@ You can download prebuilt binaries from the [Releases](https://github.com/yourus
 
 ### Linux / macOS
 
-1. Download the appropriate `.tar.gz` archive.  
-2. Extract the archive via command line:
+1. Download the appropriate `.tar.gz` archive. 
+2. Extract the archive using your preferred method, or via command line:
 
+    ```bash
     tar -xzf currency-converter-linux-amd64.tar.gz
+    ```
 
 3. Change to the extracted directory if necessary and run the binary:
 
+    ```bash
     ./currency-converter-linux-amd64 -h
+    ```
 
 > **Note:**  
 > The executable permission bit is preserved when unpacking with `tar` on Linux/macOS.  
 > If you get a permission denied error, run:
 
-    chmod +x [your-binary-name]
+    ```bash
+    chmod +x currency-converter
+    ```
 
 ### Windows
 
@@ -48,17 +54,73 @@ You can download prebuilt binaries from the [Releases](https://github.com/yourus
 2. Extract it using Windows Explorer or any unzip tool.  
 3. Run the executable, e.g.:
 
+    ```bash
     currency-converter-windows-amd64.exe -h
+    ```
+
+---
+
+## How to Compile Yourself
+
+To compile the Currency Converter CLI from source, you need to have Go installed (version 1.22 or higher recommended).
+
+1. Clone the repository:
+```bash
+    git clone https://github.com/JBTastic/Currency-Converter.git
+    cd Currency-Converter
+```
+
+2. Build the binary for your platform:
+
+    ```bash
+    # For your current platform:
+    go build -o currency-converter
+
+    # Or cross-compile, e.g. for Linux amd64:
+    GOOS=linux GOARCH=amd64 go build -o currency-converter-linux-amd64
+
+    # For Windows amd64:
+    GOOS=windows GOARCH=amd64 go build -o currency-converter-windows-amd64.exe
+
+    # For macOS amd64:
+    GOOS=darwin GOARCH=amd64 go build -o currency-converter-darwin-amd64
+
+    # For macOS arm64:
+    GOOS=darwin GOARCH=arm64 go build -o currency-converter-darwin-arm64
+    ```
+
+3. Run the built binary:
+
+    ```bash
+    ./currency-converter -h
+    ```
+
+> **Note:** When cross-compiling, make sure your Go environment supports it and that you use the correct `GOOS` and `GOARCH` values.
 
 ---
 
 ## Usage Examples
 
+    ```bash
     ./currency-converter-linux-amd64 -amount 100 -from EUR -to USD
+```
 
 or on Windows:
 
+```bash
     currency-converter-windows-amd64.exe -amount 100 -from EUR -to USD
+```
+
+---
+
+## Flags
+
+- `-amount` float64: Amount to convert (required)  
+- `-from` string: Source currency code (e.g. EUR) (required)  
+- `-to` string: Target currency code (e.g. USD) (required)  
+    ```bash
+    currency-converter-windows-amd64.exe -amount 100 -from EUR -to USD
+    ```
 
 ---
 
