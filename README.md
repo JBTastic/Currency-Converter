@@ -120,17 +120,6 @@ or on Windows:
 - `-amount` float64: Amount to convert (required)  
 - `-from` string: Source currency code (e.g. EUR) (required)  
 - `-to` string: Target currency code (e.g. USD) (required)  
-```powershell
-    currency-converter.exe -amount 100 -from EUR -to USD
-```
-
----
-
-## Flags
-
-- `-amount` float64: Amount to convert (required)  
-- `-from` string: Source currency code (e.g. EUR) (required)  
-- `-to` string: Target currency code (e.g. USD) (required)  
 - `-currencies`: List all available currencies  
 - `-abbr` string: Search currencies by name substring  
 
