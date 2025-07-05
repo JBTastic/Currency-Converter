@@ -10,9 +10,9 @@ You can download prebuilt binaries from the [Releases](https://github.com/JBTast
 
 ### Supported Platforms
 
-- Linux (amd64)  
-- Windows (amd64)  
-- macOS (amd64 and arm64)  
+- Linux (amd64) (currency-converter-linux-amd64)  
+- Windows (amd64) (currency-converter-windows-amd64.exe)  
+- macOS (amd64 and arm64) (currency-converter-darwin-amd64 and currency-converter-darwin-arm64)  
 
 ---
 
